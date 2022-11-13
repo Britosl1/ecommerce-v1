@@ -1,22 +1,17 @@
-import React, { useCallback, useState } from "react";
+import React from "react";
 
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { Box, Button, TextField, Tooltip } from "@mui/material";
+import { useConvertionRate } from "../../../hooks/convertionCalculations";
 
 const ConvertionRate: React.FC = () => {
-  const [visitors, setVisitors] = useState<string>("");
-  const [sells, setSells] = useState<string>("");
-  const [results, setResults] = useState<number>(0);
-  const [error, setError] = useState<boolean>(false);
-
-  const calculateConvertionRate = useCallback(() => {
-    if (!visitors || !sells) {
-      setError(true);
-    } else {
-      setError(false);
-      setResults((+sells / +visitors) * 100);
-    }
-  }, [visitors, sells]);
+  const {
+    updateVisitors,
+    updateSells,
+    calculateConvertionRate,
+    results,
+    error,
+  } = useConvertionRate();
 
   return (
     <Box
@@ -51,7 +46,7 @@ const ConvertionRate: React.FC = () => {
         type={"number"}
         sx={{ mb: 2 }}
         name={"visitors"}
-        onChange={(e) => setVisitors(e.target.value)}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => updateVisitors(e)}
       />
       <TextField
         id="outlined-basic"
@@ -60,7 +55,7 @@ const ConvertionRate: React.FC = () => {
         type={"number"}
         sx={{ mb: 2 }}
         name={"sells"}
-        onChange={(e) => setSells(e.target.value)}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => updateSells(e)}
       />
       <Button variant="outlined" onClick={calculateConvertionRate}>
         Calculate
