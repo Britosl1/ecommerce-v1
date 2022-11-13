@@ -1,18 +1,10 @@
 import React from "react";
 
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import { Box, Button, TextField, Tooltip } from "@mui/material";
-import { useConvertionRate } from "../../../hooks/convertionCalculations";
+import { Box, Tooltip } from "@mui/material";
+import IndividualRatePerTrafficChannel from "../IndividualRatePerTrafficChannel";
 
 const ConvertionRate: React.FC = () => {
-  const {
-    updateVisitors,
-    updateSells,
-    calculateConvertionRate,
-    results,
-    error,
-  } = useConvertionRate();
-
   return (
     <Box
       border={1}
@@ -39,42 +31,7 @@ const ConvertionRate: React.FC = () => {
           <InfoOutlinedIcon fontSize="small" />
         </Tooltip>
       </Box>
-      <TextField
-        id="outlined-basic"
-        label="Number of Visitors"
-        variant="outlined"
-        type={"number"}
-        sx={{ mb: 2 }}
-        name={"visitors"}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => updateVisitors(e)}
-      />
-      <TextField
-        id="outlined-basic"
-        label="Number of sells"
-        variant="outlined"
-        type={"number"}
-        sx={{ mb: 2 }}
-        name={"sells"}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => updateSells(e)}
-      />
-      <Button variant="outlined" onClick={calculateConvertionRate}>
-        Calculate
-      </Button>
-      <Box
-        sx={{
-          mt: 2,
-          alignSelf: "center",
-          "&:hover": {
-            color: "primary.light",
-          },
-        }}
-      >
-        {error ? (
-          <Box color={"error.main"}>Add values</Box>
-        ) : (
-          `${results.toFixed(2)}%`
-        )}
-      </Box>
+      <IndividualRatePerTrafficChannel />
     </Box>
   );
 };
