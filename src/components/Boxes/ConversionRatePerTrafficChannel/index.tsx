@@ -9,7 +9,6 @@ const ConversionRatePerTrafficChannel: React.FC = () => {
     <Box
       border={1}
       padding={2}
-      width={500}
       borderRadius={2}
       boxShadow={2}
       bgcolor={"white"}
@@ -17,6 +16,7 @@ const ConversionRatePerTrafficChannel: React.FC = () => {
       display={"flex"}
       flexDirection={"column"}
       justifyContent={"space-between"}
+      width={500}
       sx={{
         cursor: "pointer",
       }}
@@ -31,7 +31,11 @@ const ConversionRatePerTrafficChannel: React.FC = () => {
           <InfoOutlinedIcon fontSize="small" />
         </Tooltip>
       </Box>
-      <Box display={"flex"} justifyContent={"space-between"}>
+      <Box
+        display={"flex"}
+        justifyContent={"space-between"}
+        alignItems={"center"}
+      >
         <IndividualRatePerTrafficChannel title="Mercado Livre" />
         <IndividualRatePerTrafficChannel title="Amazon" />
       </Box>

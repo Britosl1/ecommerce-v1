@@ -2,7 +2,7 @@ import { Box, Button, TextField } from "@mui/material";
 import React from "react";
 import { useConvertionRate } from "../../../hooks/convertionCalculations";
 
-interface IIndividualRatePerTrafficChannelProps {
+export interface IIndividualRatePerTrafficChannelProps {
   title?: string;
 }
 
