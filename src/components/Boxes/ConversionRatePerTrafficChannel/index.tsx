@@ -3,6 +3,7 @@ import React from "react";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { Box, Tooltip } from "@mui/material";
 import IndividualRatePerTrafficChannel from "../IndividualRatePerTrafficChannel";
+import { ConvertionChannelEnum } from "../../../context/ConvertionsContext";
 
 const ConversionRatePerTrafficChannel: React.FC = () => {
   return (
@@ -36,8 +37,14 @@ const ConversionRatePerTrafficChannel: React.FC = () => {
         justifyContent={"space-between"}
         alignItems={"center"}
       >
-        <IndividualRatePerTrafficChannel title="Mercado Livre" />
-        <IndividualRatePerTrafficChannel title="Amazon" />
+        <IndividualRatePerTrafficChannel
+          title="Mercado Livre"
+          channelName={ConvertionChannelEnum.MERCADO_LIVRE}
+        />
+        <IndividualRatePerTrafficChannel
+          title="Amazon"
+          channelName={ConvertionChannelEnum.AMAZON}
+        />
       </Box>
     </Box>
   );

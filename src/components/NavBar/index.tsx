@@ -11,11 +11,17 @@ import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
+import { Link } from "react-router-dom";
 
 export default function NavBar() {
   const [state, setState] = useState<boolean>(false);
 
-  const menuOptions = ["Profile", "Convertion Rate", "Others", "Others"];
+  const menuOptions = [
+    { path: "/", navItem: "Home" },
+    { path: "/profile", navItem: "Profile" },
+    { path: "/", navItem: "Convertion Rate" },
+    { path: "/", navItem: "Others" },
+  ];
 
   const toggleDrawer =
     (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -31,11 +37,11 @@ export default function NavBar() {
     };
 
   return (
-    <Box display={"flex"} justifyContent={"flex-end"}>
+    <Box display={"flex"} justifyContent={"flex-start"}>
       <Button onClick={toggleDrawer(true)}>
         <MenuIcon />
       </Button>
-      <Drawer open={state} onClose={toggleDrawer(false)} anchor={"right"}>
+      <Drawer open={state} onClose={toggleDrawer(false)} anchor={"left"}>
         {state ? (
           <Box
             sx={{ width: 250 }}
@@ -45,12 +51,17 @@ export default function NavBar() {
           >
             <List>
               {menuOptions.map((text, index) => (
-                <ListItem key={text} disablePadding>
+                <ListItem key={text.navItem} disablePadding>
                   <ListItemButton>
                     <ListItemIcon>
                       {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                     </ListItemIcon>
-                    <ListItemText primary={text} />
+                    <Link
+                      to={text.path}
+                      style={{ textDecoration: "none", color: "#1976d2" }}
+                    >
+                      <ListItemText primary={text.navItem} />
+                    </Link>
                   </ListItemButton>
                 </ListItem>
               ))}

@@ -1,14 +1,20 @@
 import { Box, Button, TextField } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import { useConvertionRate } from "../../../hooks/convertionCalculations";
+import {
+  ConvertionChannelEnum,
+  ConvertionsContext,
+} from "../../../context/ConvertionsContext";
 
 export interface IIndividualRatePerTrafficChannelProps {
   title?: string;
+  channelName: ConvertionChannelEnum;
 }
 
 const IndividualRatePerTrafficChannel: React.FC<
   IIndividualRatePerTrafficChannelProps
-> = ({ title }) => {
+> = ({ title, channelName }) => {
+  const { addConvertionValues } = useContext(ConvertionsContext);
   const {
     updateVisitors,
     updateSells,
@@ -55,7 +61,9 @@ const IndividualRatePerTrafficChannel: React.FC<
         {error ? (
           <Box color={"error.main"}>Add values</Box>
         ) : (
-          `${results.toFixed(2)}%`
+          <Box onClick={() => addConvertionValues(results, channelName)}>
+            {results.toFixed(2)}%
+          </Box>
         )}
       </Box>
     </Box>

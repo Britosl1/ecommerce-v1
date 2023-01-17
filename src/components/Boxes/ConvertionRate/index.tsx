@@ -3,6 +3,7 @@ import React from "react";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { Box, Tooltip } from "@mui/material";
 import IndividualRatePerTrafficChannel from "../IndividualRatePerTrafficChannel";
+import { ConvertionChannelEnum } from "../../../context/ConvertionsContext";
 
 const ConvertionRate: React.FC = () => {
   return (
@@ -31,7 +32,9 @@ const ConvertionRate: React.FC = () => {
           <InfoOutlinedIcon fontSize="small" />
         </Tooltip>
       </Box>
-      <IndividualRatePerTrafficChannel />
+      <IndividualRatePerTrafficChannel
+        channelName={ConvertionChannelEnum.GENERAL}
+      />
     </Box>
   );
 };

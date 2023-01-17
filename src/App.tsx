@@ -1,13 +1,19 @@
-import Boxes from "./components/Boxes";
-import NavBar from "./components/NavBar";
+import { Box } from "@mui/material";
+import { Route, Routes } from "react-router-dom";
+import { ConvertionsContextProvider } from "./context/ConvertionsContext";
+import Home from "./screens/Home";
+import Profile from "./screens/Profile";
 
 function App() {
   return (
-    <>
-      <NavBar />
-      <Boxes.ConvertionRate />
-      <Boxes.ConversionRatePerTrafficChannel />
-    </>
+    <ConvertionsContextProvider>
+      <Box padding={2}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/profile" element={<Profile />} />
+        </Routes>
+      </Box>
+    </ConvertionsContextProvider>
   );
 }
 
